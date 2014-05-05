@@ -6,10 +6,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
@@ -22,6 +25,7 @@ public class FichaPolicia extends JFrame {
 	private JTextField Edad;
 	private JTextField Altura;
 	private JTextField Crimen;
+	
 	
 	//ComboBox para guardar delincuentes
 	private JComboBox<Delincuente> delincuentes;
@@ -97,10 +101,30 @@ public class FichaPolicia extends JFrame {
 		JButton botonGuardar = new JButton("Guardar");
 		botonGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Delincuente delincuente=new Delincuente();
 				//Aquí realizaremos los siguientes pasos
 				//1.- Comprobaremos que todos los campos están completados
+				if((Nombre.getText()).equals("")){
+					JOptionPane.showMessageDialog(null, "Has introducido mal el Nombre");
+				}
+				else if((Edad.getText().equals(""))){
+					JOptionPane.showMessageDialog(null, "Has introducido mal la Edad");
+				}
+				else if((Crimen.getText()).equals("")){
+					JOptionPane.showMessageDialog(null, "Has introducido mal el Crimen");
+				}
+				else if((Altura.getText()).equals("")){
+					JOptionPane.showMessageDialog(null, "Has introducido mal la Altura");
+				} 
+				else{
 				//2.- Crearemos un nuevo objeto delincuente
+				delincuente.setNombre(Nombre.getText());
+				delincuente.setEdad(Integer.parseInt(Edad.getText()));
+				delincuente.setCrimen(Crimen.getText());
+				delincuente.setAltura(Integer.parseInt(Altura.getText()));
 				//3.- Lo almacenaremos en el ComboBox
+				delincuentes.addItem(delincuente);
+				}
 			}
 		});
 		botonGuardar.setBounds(10, 272, 89, 23);
