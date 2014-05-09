@@ -64,10 +64,13 @@ public class FichaPolicia extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//Cojemos del comboBox la informacion y la pone en su sitio
 				delincuente=delincuentes.getItemAt(delincuentes.getSelectedIndex());
+				if(delincuente!=null)
+				{
 				Nombre.setText(delincuente.getNombre());
 				Edad.setText(String.valueOf(delincuente.getEdad()));
 				Crimen.setText(delincuente.getCrimen());
 				Altura.setText(String.valueOf(delincuente.getAltura()));
+				}
 			}
 		});
 		delincuentes.setBounds(10, 49, 414, 20);
