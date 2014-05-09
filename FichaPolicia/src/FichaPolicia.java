@@ -15,6 +15,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 
 public class FichaPolicia extends JFrame {
@@ -25,7 +27,7 @@ public class FichaPolicia extends JFrame {
 	private JTextField Edad;
 	private JTextField Altura;
 	private JTextField Crimen;
-	
+	private Delincuente delincuente;
 	
 	//ComboBox para guardar delincuentes
 	private JComboBox<Delincuente> delincuentes;
@@ -58,6 +60,15 @@ public class FichaPolicia extends JFrame {
 		contentPane.setLayout(null);
 		
 		delincuentes = new JComboBox<Delincuente>();
+		delincuentes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				delincuente=delincuentes.getItemAt(delincuentes.getSelectedIndex());
+				Nombre.setText(delincuente.getNombre());
+				Edad.setText(String.valueOf(delincuente.getEdad()));
+				Crimen.setText(delincuente.getCrimen());
+				Altura.setText(String.valueOf(delincuente.getAltura()));
+			}
+		});
 		delincuentes.setBounds(10, 49, 414, 20);
 		contentPane.add(delincuentes);
 		
@@ -101,7 +112,7 @@ public class FichaPolicia extends JFrame {
 		JButton botonGuardar = new JButton("Guardar");
 		botonGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Delincuente delincuente=new Delincuente();
+				
 				//Aquí realizaremos los siguientes pasos
 				//1.- Comprobaremos que todos los campos están completados
 				if((Nombre.getText()).equals("")){
@@ -118,12 +129,13 @@ public class FichaPolicia extends JFrame {
 				} 
 				else{
 				//2.- Crearemos un nuevo objeto delincuente
-				delincuente.setNombre(Nombre.getText());
-				delincuente.setEdad(Integer.parseInt(Edad.getText()));
-				delincuente.setCrimen(Crimen.getText());
-				delincuente.setAltura(Integer.parseInt(Altura.getText()));
+				Delincuente del=new Delincuente();
+				del.setNombre(Nombre.getText());
+				del.setEdad(Integer.parseInt(Edad.getText()));
+				del.setCrimen(Crimen.getText());
+				del.setAltura(Integer.parseInt(Altura.getText()));
 				//3.- Lo almacenaremos en el ComboBox
-				delincuentes.addItem(delincuente);
+				delincuentes.addItem(del);
 				}
 			}
 		});
@@ -134,5 +146,23 @@ public class FichaPolicia extends JFrame {
 		Crimen.setBounds(148, 161, 276, 20);
 		contentPane.add(Crimen);
 		Crimen.setColumns(10);
+		
+		JButton botonModificar = new JButton("Modificar");
+		botonModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				delincuente.setNombre(delincuente.setNombre(Nombre.getText()));
+			}
+		});
+		botonModificar.setBounds(136, 272, 89, 23);
+		contentPane.add(botonModificar);
+		
+		JButton botonBorrar = new JButton("Borrar");
+		botonBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		botonBorrar.setBounds(259, 272, 89, 23);
+		contentPane.add(botonBorrar);
 	}
 }

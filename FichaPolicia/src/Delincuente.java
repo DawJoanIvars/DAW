@@ -3,12 +3,16 @@ public class Delincuente {
 	//Falta por crear
 	//Atributos para guardar
 	//Tienen que ser los atributos de la pantalla
-	private String nombre="";
-	private int edad=0;
-	private String crimen="";
-	private int altura=0;
+	private String nombre;
+	private int edad;
+	private String crimen;
+	private int altura;
+	
 	public Delincuente() {
-		
+		nombre="";
+		edad=0;
+		crimen="";
+		altura=0;
 	}
 	//Falta por crear
 	//Los métodos de guardado y recuperación
