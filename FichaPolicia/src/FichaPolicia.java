@@ -62,6 +62,7 @@ public class FichaPolicia extends JFrame {
 		delincuentes = new JComboBox<Delincuente>();
 		delincuentes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Cojemos del comboBox la informacion y la pone en su sitio
 				delincuente=delincuentes.getItemAt(delincuentes.getSelectedIndex());
 				Nombre.setText(delincuente.getNombre());
 				Edad.setText(String.valueOf(delincuente.getEdad()));
@@ -150,7 +151,12 @@ public class FichaPolicia extends JFrame {
 		JButton botonModificar = new JButton("Modificar");
 		botonModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				delincuente.setNombre(delincuente.setNombre(Nombre.getText()));
+				delincuente.setNombre(Nombre.getText());
+				delincuente.setNombre(Nombre.getText());
+				delincuente.setEdad(Integer.parseInt(Edad.getText()));
+				delincuente.setCrimen(Crimen.getText());
+				delincuente.setAltura(Integer.parseInt(Altura.getText()));
+				
 			}
 		});
 		botonModificar.setBounds(136, 272, 89, 23);
@@ -159,6 +165,8 @@ public class FichaPolicia extends JFrame {
 		JButton botonBorrar = new JButton("Borrar");
 		botonBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Eliminamos el item seleccionado
+				delincuentes.removeItem(delincuente);
 				
 			}
 		});
