@@ -28,6 +28,7 @@ public class FichaPolicia extends JFrame {
 	private JTextField Altura;
 	private JTextField Crimen;
 	private Delincuente delincuente;
+	private BaseDatos datos;
 	
 	//ComboBox para guardar delincuentes
 	private JComboBox<Delincuente> delincuentes;

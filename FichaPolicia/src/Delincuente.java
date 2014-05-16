@@ -43,7 +43,7 @@ public class Delincuente {
 	//Falta por crear
 	//El método toString para que aparezca en el comboBox
 	public String toString(){
-		return nombre;
+		return nombre+" "+ "("+edad+")";
 	}
 
 }
