@@ -135,6 +135,7 @@ public class FichaPolicia extends JFrame {
 				else{
 				//2.- Crearemos un nuevo objeto delincuente
 				Delincuente del=new Delincuente();
+				datos.insertarDelincuentes(Nombre.getText(), Integer.parseInt(Edad.getText()), Crimen.getText(), Integer.parseInt(Altura.getText()));
 				del.setNombre(Nombre.getText());
 				del.setEdad(Integer.parseInt(Edad.getText()));
 				del.setCrimen(Crimen.getText());
@@ -176,5 +177,8 @@ public class FichaPolicia extends JFrame {
 		});
 		botonBorrar.setBounds(259, 272, 89, 23);
 		contentPane.add(botonBorrar);
+
+		datos=new BaseDatos(delincuentes);
+		datos.leerDelincuentes();
 	}
 }
