@@ -14,6 +14,12 @@ public class Delincuente {
 		crimen="";
 		altura=0;
 	}
+	public Delincuente(String NombreYapellidos, int Edad, int Altura, String Crimen) {
+		nombre=NombreYapellidos;
+		edad=Edad;
+		crimen=Crimen;
+		altura=Altura;
+	}
 	//Falta por crear
 	//Los métodos de guardado y recuperación
 	public void setNombre(String CojeNombre) {

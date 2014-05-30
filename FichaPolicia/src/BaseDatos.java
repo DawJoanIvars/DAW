@@ -47,7 +47,10 @@ public class BaseDatos {
 					{
 					   System.out.println("id="+conjuntoResultados.getObject("ID")+
 					      ", Nombre="+conjuntoResultados.getObject("NombreYapellidos"));
-					   Delincuente del=new Delincuente();
+					   Delincuente del=new Delincuente((String)conjuntoResultados.getObject("NombreYapellidos"),
+							   							(int)conjuntoResultados.getObject("Edad"),
+							   							(int)conjuntoResultados.getObject("Altura"),
+							   							(String)conjuntoResultados.getObject("Crimen"));
 					   
 					   listadoDelincuentes.addItem(del);
 					}
@@ -68,7 +71,7 @@ public class BaseDatos {
 		}
 		// insercion en base de datos
 		try {
-			String sql="INSERT INTO `fichadelincuentes`.`delincuentes` ('NombreYapellidos', `Edad`, `Altura`, `Crimen`) VALUES ("
+			String sql="INSERT INTO `fichadelincuentes`.`delincuentes` (`NombreYapellidos`, `Edad`, `Altura`, `Crimen`) VALUES ("
 					+ 													"'"+NombreApellidos+"', '"+Edad+"', '"+Altura+"', '"+crimen+"');";
 			instruccion.executeUpdate(sql);
 		} catch (SQLException e) {
