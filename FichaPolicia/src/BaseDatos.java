@@ -63,7 +63,7 @@ public class BaseDatos {
 		excepcionSql.printStackTrace();}
 		}
 	
-	public void insertarDelincuentes (String NombreApellidos, int Edad, String crimen, int Altura){
+	public int insertarDelincuentes (String NombreApellidos, int Edad, String crimen, int Altura){
 		// crea objeto Statement para consultar la base de datos
 		try {
 			instruccion = (Statement) conexion.createStatement();
@@ -76,9 +76,23 @@ public class BaseDatos {
 			String sql="INSERT INTO `fichadelincuentes`.`delincuentes` (`NombreYapellidos`, `Edad`, `Altura`, `Crimen`) VALUES ("
 					+ 													"'"+NombreApellidos+"', '"+Edad+"', '"+Altura+"', '"+crimen+"');";
 			instruccion.executeUpdate(sql);
+			
+			//PARA GUARDAR EL ID
+			sql = "SELECT * FROM delincuentes ORDER BY ID DESC LIMIT 1";
+			conjuntoResultados = instruccion.executeQuery(sql);
+			int ID=-1;
+			//Mostrar por pantalla
+			while (conjuntoResultados.next())
+			{
+				ID=(int)conjuntoResultados.getObject("ID");
+			}
+			conjuntoResultados.close();	
+			return ID;
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return -1;
 			}
 		}
 	
@@ -102,8 +116,23 @@ public class BaseDatos {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				}
 			}
-		
+		public void remove (int ID){
+			try {
+				instruccion = (Statement) conexion.createStatement();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// insercion en base de datos
+			try {
+				String sql="DELETE FROM `fichadelincuentes`.`delincuentes` WHERE  `delincuentes`.`ID` ="+ID+"";
+				instruccion.executeUpdate(sql);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+		}
 	}
 }
 

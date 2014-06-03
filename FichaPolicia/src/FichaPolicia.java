@@ -137,12 +137,14 @@ public class FichaPolicia extends JFrame {
 				else{
 				//2.- Crearemos un nuevo objeto delincuente
 				Delincuente del=new Delincuente();
-				datos.insertarDelincuentes(Nombre.getText(), Integer.parseInt(Edad.getText()), Crimen.getText(), Integer.parseInt(Altura.getText()));
+				int ID=0;
+				ID=datos.insertarDelincuentes(Nombre.getText(), Integer.parseInt(Edad.getText()), Crimen.getText(), Integer.parseInt(Altura.getText()));
 				del.setNombre(Nombre.getText());
 				del.setEdad(Integer.parseInt(Edad.getText()));
 				del.setCrimen(Crimen.getText());
 				del.setAltura(Integer.parseInt(Altura.getText()));
-				del.setAltura(Integer.parseInt(textID.getText()));
+				del.setId(ID);
+				
 				
 				//3.- Lo almacenaremos en el ComboBox
 				delincuentes.addItem(del);
@@ -176,7 +178,7 @@ public class FichaPolicia extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//Eliminamos el item seleccionado
 				delincuentes.removeItem(delincuente);
-				
+				datos.remove(Integer.parseInt(textID.getText()));
 			}
 		});
 		botonBorrar.setBounds(259, 272, 89, 23);
