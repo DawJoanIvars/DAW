@@ -50,7 +50,9 @@ public class BaseDatos {
 					   Delincuente del=new Delincuente((String)conjuntoResultados.getObject("NombreYapellidos"),
 							   							(int)conjuntoResultados.getObject("Edad"),
 							   							(int)conjuntoResultados.getObject("Altura"),
-							   							(String)conjuntoResultados.getObject("Crimen"));
+							   							(String)conjuntoResultados.getObject("Crimen"),
+							   							(int)conjuntoResultados.getObject("ID"));
+					   			
 					   
 					   listadoDelincuentes.addItem(del);
 					}
@@ -77,7 +79,30 @@ public class BaseDatos {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			}
 		}
+	
+		public void modificaDelincuentes ( int ID, String NombreApellidos, int Edad, String crimen, int Altura){
+			// crea objeto Statement para consultar la base de datos
+			try {
+				instruccion = (Statement) conexion.createStatement();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			// insercion en base de datos
+			try {
+				String sql="UPDATE  `fichadelincuentes`.`delincuentes` SET "
+						+ "`NombreYapellidos` ='"+NombreApellidos+"',"
+						+"`Edad` =  '"+Edad+"',"
+						+"`Altura` =  '"+Altura+"',"
+						+"`Crimen` =  '"+crimen+"'"+
+						 " WHERE  `delincuentes`.`ID` ="+ID+"";
+				instruccion.executeUpdate(sql);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
 	}
 }

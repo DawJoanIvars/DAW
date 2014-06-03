@@ -32,6 +32,7 @@ public class FichaPolicia extends JFrame {
 	
 	//ComboBox para guardar delincuentes
 	private JComboBox<Delincuente> delincuentes;
+	private JTextField textID;
 
 	//Lanza la aplicación
 	public static void main(String[] args) {
@@ -71,6 +72,7 @@ public class FichaPolicia extends JFrame {
 				Edad.setText(String.valueOf(delincuente.getEdad()));
 				Crimen.setText(delincuente.getCrimen());
 				Altura.setText(String.valueOf(delincuente.getAltura()));
+				textID.setText(String.valueOf(delincuente.getId()));
 				}
 			}
 		});
@@ -113,7 +115,7 @@ public class FichaPolicia extends JFrame {
 		lblCrimen.setBounds(336, 136, 88, 14);
 		contentPane.add(lblCrimen);
 		
-		
+		//Boton Guardar
 		JButton botonGuardar = new JButton("Guardar");
 		botonGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -140,6 +142,8 @@ public class FichaPolicia extends JFrame {
 				del.setEdad(Integer.parseInt(Edad.getText()));
 				del.setCrimen(Crimen.getText());
 				del.setAltura(Integer.parseInt(Altura.getText()));
+				del.setAltura(Integer.parseInt(textID.getText()));
+				
 				//3.- Lo almacenaremos en el ComboBox
 				delincuentes.addItem(del);
 				}
@@ -152,11 +156,11 @@ public class FichaPolicia extends JFrame {
 		Crimen.setBounds(148, 161, 276, 20);
 		contentPane.add(Crimen);
 		Crimen.setColumns(10);
-		
+		//Boton Modificar
 		JButton botonModificar = new JButton("Modificar");
 		botonModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				delincuente.setNombre(Nombre.getText());
+				datos.modificaDelincuentes(Integer.parseInt(textID.getText()),Nombre.getText(), Integer.parseInt(Edad.getText()), Crimen.getText(), Integer.parseInt(Altura.getText()));
 				delincuente.setNombre(Nombre.getText());
 				delincuente.setEdad(Integer.parseInt(Edad.getText()));
 				delincuente.setCrimen(Crimen.getText());
@@ -179,6 +183,16 @@ public class FichaPolicia extends JFrame {
 		contentPane.add(botonBorrar);
 
 		datos=new BaseDatos(delincuentes);
+		
+		JLabel lblId = new JLabel("ID");
+		lblId.setBounds(197, 197, 46, 14);
+		contentPane.add(lblId);
+		
+		textID = new JTextField();
+		textID.setEditable(false);
+		textID.setBounds(177, 222, 86, 20);
+		contentPane.add(textID);
+		textID.setColumns(10);
 		datos.leerDelincuentes();
 	}
 }

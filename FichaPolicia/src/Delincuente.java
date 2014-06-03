@@ -7,18 +7,20 @@ public class Delincuente {
 	private int edad;
 	private String crimen;
 	private int altura;
-	
+	private int iD;
 	public Delincuente() {
 		nombre="";
 		edad=0;
 		crimen="";
 		altura=0;
+		iD=0;
 	}
-	public Delincuente(String NombreYapellidos, int Edad, int Altura, String Crimen) {
+	public Delincuente(String NombreYapellidos, int Edad, int Altura, String Crimen, int ID) {
 		nombre=NombreYapellidos;
 		edad=Edad;
 		crimen=Crimen;
 		altura=Altura;
+		iD=ID;
 	}
 	//Falta por crear
 	//Los métodos de guardado y recuperación
@@ -46,10 +48,16 @@ public class Delincuente {
 	public int getAltura() {
 		return altura;
 	}
+	public void setId(int id) {
+		iD=id;
+	}
+	public int getId() {
+		return iD;
+	}
 	//Falta por crear
 	//El método toString para que aparezca en el comboBox
 	public String toString(){
-		return nombre+" "+ "("+edad+")";
+		return nombre+" "+ "("+iD+")";
 	}
 
 }
